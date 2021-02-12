@@ -29,18 +29,21 @@ describe('User Service', function() {
       const date = new Date();
       await users.createNew({
         username: "tester" + date.getTime(),
-        password: "testerPassword"
+        password: "testerPassword",
+        email: "tester@email.com",
+        firstName: "Simo",
+        lastName: "Salminen",
+        phoneNumber: "+358401234567",
+        dateOfBirth: "25.08.1990"
       }).then(user => {
-
         expect(user).to.be.jsonSchema(userSchema);
-
       }).catch((error) => {
         console.log(error);
         assert.fail();
       })
     });
 
-    it('Should try to create a new user with missing paramters and survive', async function() {
+    it('Should try to create a new user with missing parameters and survive', async function() {
 
       const date = new Date();
 
@@ -54,11 +57,16 @@ describe('User Service', function() {
       })
     });
 
-    it('Should create a second user and verifiy getting all', async function() {
+    it('Should create a second user and verify getting all', async function() {
       const date = new Date();
       await users.createNew({
         username: "tester2" + date.getTime(),
-        password: "tester2Password"
+        password: "tester2Password",
+        email: "tester2@email.com",
+        firstName: "Pertti",
+        lastName: "Pasanen",
+        phoneNumber: "+358407654123",
+        dateOfBirth: "08.02.1960"
       }).then((user) => {
         return users.getAll();
       })
@@ -134,7 +142,12 @@ describe('User Service', function() {
         const modifiedUser = {
           id: user.id,
           username: 'modifiedUsername',
-          password: user.password
+          password: user.password,
+          email: user.email,
+          firstName: user.firstName, 
+          lastName: user.lastName,
+          phoneNumber: user.phoneNumber,
+          dateOfBirth: user.dateOfBirth
         }
         // Modify user
         return users.modify(modifiedUser)

@@ -18,7 +18,12 @@ function createTestUser()
  .set('Content-Type', 'application/json')
  .send({
    username: "HTTPTester1",
-   password: "HTTPTester1Password"
+   password: "HTTPTester1Password",
+   email: "tester@email.com",
+   firstName: "Simo",
+   lastName: "Salminen",
+   phoneNumber: "+358401234567",
+   dateOfBirth: "25.08.1990"
  });
 }
 
@@ -44,7 +49,7 @@ describe('User HTTP Routes', function() {
         });
     });
 
-    it('Should fail if usename exists', async function() {
+    it('Should fail if username exists', async function() {
       await chai.request(api)
         .post('/users')
         .set('Content-Type', 'application/json')
@@ -221,7 +226,12 @@ describe('User HTTP Routes', function() {
         .set('Authorization', 'Bearer ' + userJwt)
         .send({
           username: "HTTPTester1Modified",
-          password: "HTTPTester1Password"
+          password: "HTTPTester1Password",
+          email: "tester@email.com",
+          firstName: "Simo",
+          lastName: "Salminen",
+          phoneNumber: "+358401234567",
+          dateOfBirth: "25.08.1990"
         })
         .then(modifyResponse => {
           expect(modifyResponse).to.have.property('status');
@@ -251,7 +261,12 @@ describe('User HTTP Routes', function() {
         .set('Authorization', 'Bearer ' + userJwt)
         .send({
           username: "HTTPTester1Modified",
-          password: "HTTPTester1PasswordModified"
+          password: "HTTPTester1PasswordModified",
+          email: "tester@email.com",
+          firstName: "Simo",
+          lastName: "Salminen",
+          phoneNumber: "+358401234567",
+          dateOfBirth: "25.08.1990"
         })
         .then(modifyResponse => {
           expect(modifyResponse).to.have.property('status');

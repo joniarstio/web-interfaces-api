@@ -34,7 +34,12 @@ router.post('', validateCreateOrModifyUserRequest, async (req, res) => {
   try {
     const newUser = await users.createNew({
       username: req.body.username,
-      password: hashedPassword
+      password: hashedPassword,
+      email: req.body.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+      dateOfBirth: req.body.dateOfBirth
     });
 
     res.status(201).json({
@@ -76,7 +81,12 @@ router.put(
       const result = await users.modify({
         id: req.params.id,
         username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, 6)
+        password: bcrypt.hashSync(req.body.password, 6),      
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
+        dateOfBirth: req.body.dateOfBirth
       });
 
       if(result.changes == 0) {

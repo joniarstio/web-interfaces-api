@@ -42,7 +42,7 @@ module.exports = {
         }
         else {
           // Create new user
-          dbService.run('INSERT INTO users (username, password) VALUES(?, ?)', [user.username, user.password])
+          dbService.run('INSERT INTO users (username, password, email, firstName, lastName, phoneNumber, dateOfBirth) VALUES(?, ?, ?, ?, ?, ?, ?)', [user.username, user.password, user.email, user.firstName, user.lastName, user.phoneNumber, user.dateOfBirth])
           .then(result => {
             return getUserById(result.lastID);
           })
@@ -70,7 +70,7 @@ module.exports = {
     });
   },
   modify: async (user) => {
-    return dbService.run('UPDATE users SET username = ?, password = ? WHERE id = ?', [user.username, user.password, user.id]);
+    return dbService.run('UPDATE users SET username = ?, password = ?, email = ?, firstName = ?, lastName = ?, phoneNumber = ?, dateOfBirth = ? WHERE id = ?', [user.username, user.password, user.email, user.firstName, user.lastName, user.phoneNumber, user.dateOfBirth, user.id]);
   },
   getUserByName: async (username) => {
     return new Promise((resolve, reject) => {
