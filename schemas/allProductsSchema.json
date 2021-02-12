@@ -1,5 +1,5 @@
 {
-  "title": "Array of Todos",
+  "title": "Array of Products",
   "type": "object",
   "required": ["products"],
   "properties": {
@@ -58,7 +58,7 @@
         "createdDateTime": {
           "type": "string",
           "format": "date-time",
-          "description": "When the task was created"
+          "description": "When the product was created"
         }
       }
     }

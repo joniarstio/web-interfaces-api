@@ -12,6 +12,21 @@
     },
     "password": {
       "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "string"
     }
   }
 }

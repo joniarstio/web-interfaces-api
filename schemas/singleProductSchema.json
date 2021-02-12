@@ -46,7 +46,7 @@
     "createdDateTime": {
       "type": "string",
       "format": "date-time",
-      "description": "When the task was created"
+      "description": "When the product was created"
     }
   }
 }

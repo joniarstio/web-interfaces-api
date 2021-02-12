@@ -1,11 +1,11 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Todo API",
+    "title": "Web Intefaces API",
     "version": "1.0",
     "contact": {
-      "name": "Lasse Haverinen",
-      "email": "lasse.haverinen@oamk.fi"
+      "name": "Joni Arstio",
+      "email": "t9arjo00@students.oamk.fi"
     }
   },
   "servers": [
@@ -71,6 +71,21 @@
                   },
                   "password": {
                     "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "dateOfBirth": {
+                    "type": "string"
                   }
                 }
               }
@@ -110,9 +125,9 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "id": 234,
-                      "username": "John",
-                      "password": "ExamplePassword"
+                      "id": 854,
+                      "username": "Janet",
+                      "password": "passwordexample"
                     }
                   }
                 }
@@ -149,10 +164,7 @@
             "JWT": []
           }
         ],
-        "description": "Get user information",
-        "requestBody": {
-          "description": ""
-        }
+        "description": "Get user information"
       },
       "put": {
         "summary": "Modify user info",
@@ -200,8 +212,8 @@
               "examples": {
                 "example-1": {
                   "value": {
-                    "username": "paul",
-                    "password": "newpassword"
+                    "username": "mike",
+                    "password": "passwordexample"
                   }
                 }
               }
@@ -265,7 +277,7 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                      "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozfSwiaWF0IjoxNjEzMTM1MTUwLCJleHAiOjE2MTMxMzUyMTB9.3Q1IKmUdVIt-xtUbIr94M2xL-SbH5-w5DeKBAAA87TY"
                     }
                   }
                 }
@@ -299,8 +311,8 @@
               "examples": {
                 "example-1": {
                   "value": {
-                    "username": "john",
-                    "password": "mypassword"
+                    "username": "joe",
+                    "password": "passwordexample"
                   }
                 }
               }
@@ -310,11 +322,11 @@
       },
       "parameters": []
     },
-    "/todos": {
+    "/products": {
       "get": {
-        "summary": "Get all todos of a user",
+        "summary": "Get all products of a user",
         "tags": [
-          "Todo"
+          "Product"
         ],
         "responses": {
           "200": {
@@ -324,10 +336,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "todos": {
+                    "products": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Todo"
+                        "$ref": "#/components/schemas/Product"
                       }
                     }
                   }
@@ -335,13 +347,18 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "todos": [
+                      "products": [
                         {
                           "id": 5346,
-                          "description": "Buy milk",
-                          "dueDateTime": "2020-04-03T10:30:00Z",
-                          "status": "open",
-                          "createdDateTime": "2020-01-03T10:00:00Z"
+                          "title": "Test product",
+                          "description": "This is description of the product",
+                          "category": "Test category",
+                          "location": "Oulu, Finland",
+                          "images": "https://images.com",
+                          "price": 23.5,
+                          "deliveryType": "Posti",
+                          "sellerName": "Matti Myyjä",
+                          "sellerPhone": "+358401234567"
                         }
                       ]
                     }
@@ -351,7 +368,7 @@
             }
           }
         },
-        "operationId": "get-todos",
+        "operationId": "get-products",
         "security": [
           {
             "JWT": []
@@ -367,17 +384,17 @@
             }
           }
         },
-        "description": "Get all todos of a user"
+        "description": "Get all products"
       },
       "post": {
-        "summary": "Create a new Todo",
-        "operationId": "post-todos",
+        "summary": "Create a new product",
+        "operationId": "post-products",
         "responses": {
           "201": {
             "description": "Created"
           }
         },
-        "description": "Create new Todo",
+        "description": "Create a new product",
         "security": [
           {
             "JWT": []
@@ -387,15 +404,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Todo"
+                "$ref": "#/components/schemas/Product"
               },
               "examples": {
                 "example-1": {
                   "value": {
-                    "id": 5346,
-                    "description": "Buy milk",
-                    "dueDateTime": "2020-04-03T10:29:02Z",
-                    "status": "open"
+                    "id": 2356,
+                    "title": "Test product",
+                    "description": "This is description of the product",
+                    "category": "Test category",
+                    "location": "Oulu, Finland",
+                    "images": "https://images.com",
+                    "price": 23.5,
+                    "deliveryType": "Posti",
+                    "sellerName": "Matti Myyjä",
+                    "sellerPhone": "+358401234567"
                   }
                 }
               }
@@ -403,12 +426,12 @@
           }
         },
         "tags": [
-          "Todo"
+          "Product"
         ]
       },
       "parameters": []
     },
-    "/todos/{id}": {
+    "/products/{id}": {
       "parameters": [
         {
           "schema": {
@@ -420,9 +443,9 @@
         }
       ],
       "get": {
-        "summary": "Get a single Todo",
+        "summary": "Get a single product",
         "tags": [
-          "Todo"
+          "Product"
         ],
         "responses": {
           "200": {
@@ -430,16 +453,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Todo"
+                  "$ref": "#/components/schemas/Product"
                 }
               }
             }
           },
           "404": {
-            "description": "Not found",
+            "description": "Not found"
           }
         },
-        "operationId": "get-todos-id",
+        "operationId": "get-products-id",
         "description": "",
         "security": [
           {
@@ -448,8 +471,8 @@
         ]
       },
       "put": {
-        "summary": "Modify a Todo",
-        "operationId": "put-todos-id",
+        "summary": "Modify a product",
+        "operationId": "put-products-id",
         "responses": {
           "200": {
             "description": "OK"
@@ -487,13 +510,43 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Todo"
+                "$ref": "#/components/schemas/Product"
               }
             }
           }
         },
         "tags": [
-          "Todo"
+          "Product"
+        ]
+      }
+    },
+    "/products/all": {
+      "get": {
+        "summary": "Get all products",
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "operationId": "get-products-all",
+        "description": "",
+        "security": [
+          {
+            "JWT": []
+          }
         ]
       }
     }
@@ -522,18 +575,32 @@
             "type": "string"
           },
           "password": {
-            "type": "string",
-            "minLength": 8
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
           }
         },
         "required": [
-          "username"
+          "username, password"
         ],
         "x-examples": {
           "example-1": {
-            "id": 9394,
-            "username": "john",
-            "password": "examplepassword"
+            "id": 2356,
+            "username": "jane",
+            "password": "passwordexample"
           }
         },
         "x-tags": [
@@ -552,38 +619,68 @@
           "Schema"
         ]
       },
-      "Todo": {
-        "title": "Todo",
+      "Product": {
+        "title": "Product",
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Id of the product"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the product"
           },
           "description": {
-            "type": "string"
-          },
-          "dueDateTime": {
             "type": "string",
-            "format": "date-time",
-            "example": "2020-04-03T10:29:02Z",
-            "description": "ISO 8601"
+            "description": "Description of the product"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the product"
+          },
+          "location": {
+            "type": "string",
+            "description": "Location of the product"
+          },
+          "images": {
+            "type": "string",
+            "description": "Images of the product"
+          },
+          "price": {
+            "type": "number",
+            "description": "Price of the product"
+          },
+          "deliveryType": {
+            "type": "string",
+            "description": "What are delivery methods"
+          },
+          "sellerName": {
+            "type": "string",
+            "description": "Name of the seller"
+          },
+          "sellerPhone": {
+            "type": "string",
+            "description": "Phone number of the seller"
           },
           "createdDateTime": {
             "type": "string",
             "description": "Server created date time, ISO 8601",
             "format": "date-time",
             "example": "2020-04-03T10:29:02Z"
-          },
-          "isDone": {
-            "type": "boolean",
-            "description": "Is the task done or not"
-          }
+          } 
         },
         "required": [
           "id",
+          "title",
           "description",
-          "dueDateTime",
-          "status"
+          "category", 
+          "location", 
+          "images", 
+          "price", 
+          "deliveryType", 
+          "sellerName", 
+          "sellerPhone"
         ],
         "x-tags": [
           "Schema"

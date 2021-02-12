@@ -50,15 +50,6 @@ module.exports = {
       })
       .catch(error => reject(error));
     });
-    /*
-    {
-        description: req.body.description,
-        dueDateTime: req.body.dueDateTime,
-        createdDateTime: now.toISOString(),
-        isDone: false
-      }
-    */
-
   },
   getProductById: async (productId, userId) => {
     return new Promise((resolve, reject) => {
