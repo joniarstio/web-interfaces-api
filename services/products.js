@@ -38,8 +38,8 @@ module.exports = {
   },
   addNew: async (product) => {
     return new Promise((resolve, reject) => {
-      dbService.run('INSERT INTO products (user, description, isDone, dueDateTime, createdDateTime) VALUES(?, ?, ?, ?, ?)',
-                   [product.user, product.description, product.isDone, product.dueDateTime, product.createdDateTime])
+      dbService.run('INSERT INTO products (user, title, description, category, location, images, price, deliveryType, sellerName, sellerPhone, createdDateTime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                   [product.user, product.title, product.description, product.category, product.location, product.images, product.price, product.deliveryType, product.sellerName, product.sellerPhone, product.createdDateTime])
       .then(result => {
         if(result.changes == 1) {
           resolve(true);
@@ -92,8 +92,8 @@ module.exports = {
   updateProductById: async (productId, productContent) => {
     return new Promise((resolve, reject) => {
       dbService.run(
-        'UPDATE products SET description = ?, isDone = ?, dueDateTime = ? WHERE id = ?',
-        [productContent.description, productContent.isDone, productContent.dueDateTime, productId])
+        'UPDATE products SET title = ?, description = ?, category = ?, location = ?, images = ?, price = ?, deliveryType = ?, sellerName = ?, sellerPhone = ? WHERE id = ?',
+        [productContent.title, productContent.description, productContent.category, productContent.location, productContent.images, productContent.price, productContent.deliveryType, productContent.sellerName, productContent.sellerPhone, productId])
       .then(result => {
         if(result.changes == 1) {
           resolve(true);

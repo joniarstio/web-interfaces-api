@@ -86,10 +86,16 @@ router.post(
       const now = new Date('05 October 2011 14:48 UTC');
       const result = await products.addNew({
         user: req.user.id,
+        title: req.body.title,
         description: req.body.description,
-        dueDateTime: req.body.dueDateTime,
+        category: req.body.category,
+        location: req.body.location,
+        images: req.body.images,
+        price: req.body.price,
+        deliveryType: req.body.deliveryType,
+        sellerName: req.body.sellerName,
+        sellerPhone: req.body.sellerPhone,
         createdDateTime: now.toISOString(),
-        isDone: false
       });
       res.status(201).send();
     } catch (error) {

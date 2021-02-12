@@ -46,9 +46,15 @@ async function createTables()
         `CREATE TABLE IF NOT EXISTS "products" (
         "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         "user" INTEGER NOT NULL,
+        "title" TEXT NOT NULL,
         "description"	TEXT NOT NULL,
-        "isDone" INTEGER NOT NULL,
-        "dueDateTime"	TEXT NOT NULL,
+        "category" TEXT NOT NULL,
+        "location" TEXT NOT NULL,
+        "images" TEXT NOT NULL,
+        "price"	INTEGER NOT NULL,
+        "deliveryType" TEXT NOT NULL,
+        "sellerName"	TEXT NOT NULL,
+        "sellerPhone"	TEXT NOT NULL,
         "createdDateTime"	TEXT NOT NULL
         )`,
         []

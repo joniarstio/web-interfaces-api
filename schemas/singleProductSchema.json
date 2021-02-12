@@ -1,24 +1,47 @@
 {
-  "title": "Single todo",
+  "title": "Single product",
   "type": "object",
-  "required": [ "id", "description", "isDone", "dueDateTime", "createdDateTime"],
+  "required": [ "id", "title", "description", "category", "location", "images", "price", "deliveryType", "sellerName", "sellerPhone", "createdDateTime"],
   "properties": {
     "id": {
       "type": "number",
-      "description": "Unique id of the todo"
+      "description": "Unique id of the product"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the product"
     },
     "description": {
       "type": "string",
-      "description": "Description of the todo"
+      "description": "Description of the product"
     },
-    "dueDateTime": {
+    "category": {
       "type": "string",
-      "format": "date-time",
-      "description": "When the task is due"
+      "description": "Category of the product"
     },
-    "isDone": {
-      "type": "boolean",
-      "description": "Status indicator is the todo open or done"
+    "location": {
+      "type": "string",
+      "description": "Location of the product"
+    },
+    "images": {
+      "type": "string",
+      "description": "Images of the product"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price of the product"
+    },
+    "deliveryType": {
+      "type": "string",
+      "description": "What are delivery methods"
+    },
+    "sellerName": {
+      "type": "string",
+      "description": "Name of the seller"
+    },
+    "sellerPhone": {
+      "type": "string",
+      "description": "Phone number of the seller"
     },
     "createdDateTime": {
       "type": "string",

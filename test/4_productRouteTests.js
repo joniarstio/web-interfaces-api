@@ -39,9 +39,15 @@ describe('Product HTTP Routes', function() {
         .post('/products')
         .set('Authorization', 'Bearer ' + userJwt)
         .send({
+          "title": "Test product",
           "description": "Buy milk",
-          "dueDateTime": "2020-06-10T10:00:00+00:00",
-          "isDone": false
+          "category": "Test category",
+          "location": "Oulu, Finland",
+          "images": "https://images.com",
+          "price": 23.5,
+          "deliveryType": "Posti",
+          "sellerName": "Matti Myyjä",
+          "sellerPhone": "+358401234567",
         })
         .then(response => {
           expect(response).to.have.property('status');
@@ -65,9 +71,15 @@ describe('Product HTTP Routes', function() {
           expect(response.status).to.equal(200);
           expect(response.body).to.be.jsonSchema(allProductsSchema);
           expect(response.body.products).to.have.lengthOf(1);
+          expect(response.body.products[0].title).to.equal("Test product");
           expect(response.body.products[0].description).to.equal("Buy milk");
-          expect(response.body.products[0].isDone).to.equal(false);
-          expect(response.body.products[0].dueDateTime).to.equal("2020-06-10T10:00:00+00:00");
+          expect(response.body.products[0].category).to.equal("Test category");
+          expect(response.body.products[0].location).to.equal("Oulu, Finland");
+          expect(response.body.products[0].images).to.equal("https://images.com");
+          expect(response.body.products[0].price).to.equal(23.5);
+          expect(response.body.products[0].deliveryType).to.equal("Posti");
+          expect(response.body.products[0].sellerName).to.equal("Matti Myyjä");
+          expect(response.body.products[0].sellerPhone).to.equal("+358401234567");
           storedProducts = response.body.products;
         })
         .catch(error => {
@@ -130,9 +142,15 @@ describe('Product HTTP Routes', function() {
         .put('/products/' + storedProducts[0].id)
         .set('Authorization', 'Bearer ' + userJwt)
         .send({
+          "title": "Modified product title",
           "description": "Modified product",
-          "dueDateTime": "2020-06-10T10:00:00+00:00",
-          "isDone": false
+          "category": "Modified category",
+          "location": "Helsinki, Finland",
+          "images": "https://images.net",
+          "price": 26.1,
+          "deliveryType": "Pickup",
+          "sellerName": "Mervi Myyjä",
+          "sellerPhone": "+358407654321",
         })
         .then(response => {
           expect(response).to.have.property('status');
