@@ -61,7 +61,7 @@ router.get('/login', passportInstance.authenticate('basic', { session: false }),
   };
 
   const options = {
-    expiresIn: '1m'
+    expiresIn: '10m'
   }
 
   /* Sign the token with payload, key and options.
@@ -69,7 +69,7 @@ router.get('/login', passportInstance.authenticate('basic', { session: false }),
      https://github.com/auth0/node-jsonwebtoken#readme */
   const token = jwt.sign(payload, secretJWT.key, options);
 
-  return res.json({ jwt: token });
+  return res.json({ token });
 });
 
 router.put(
