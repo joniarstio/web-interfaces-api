@@ -2,21 +2,9 @@ const uuidv4 = require('uuid/v4');
 const sqlite3 = require('sqlite3').verbose();
 const dbService = require('./db');
 
-/*function convertIsDoneFromIntegerToBoolean(arrayOfElements)
-{
-  arrayOfElements = arrayOfElements.map(r => {
-    if(r.isDone) {
-      r.isDone = true;
-    } else {
-      r.isDone = false;
-    }
-    return r;
-  });
-}*/
 
 module.exports = {
-  getAllUserProducts: (userId) => products.filter(p => p.userId === userId),
-
+  
   getAllProducts: async () => {
     return new Promise((resolve, reject) => {
       dbService.getDb().all('SELECT * FROM products', function(error, rows) {
@@ -26,6 +14,7 @@ module.exports = {
       })
     });
   },
+
   getProductsByUserId: async (userId) => {
     return new Promise((resolve, reject) => {
       dbService.getDb().all('SELECT * FROM products WHERE user = ?', [userId], function(error, rows) {
@@ -34,6 +23,7 @@ module.exports = {
       })
     });
   },
+
   addNew: async (product) => {
     return new Promise((resolve, reject) => {
       dbService.run('INSERT INTO products (user, title, description, category, location, images, price, deliveryType, sellerName, sellerPhone, createdDateTime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -49,21 +39,16 @@ module.exports = {
       .catch(error => reject(error));
     });
   },
+
   getProductById: async (productId, userId) => {
     return new Promise((resolve, reject) => {
       dbService.getDb().get('SELECT * FROM products WHERE id = ? AND user = ?', [productId, userId], function(error, rows) {
         error !== null ? reject(error) : null;
-
-        if(rows != undefined) {
-          // This datatype conversion is here because sqlite does not have boolean datatype, only integer
-          //convertIsDoneFromIntegerToBoolean([rows]);
-        }
-
-
         resolve(rows);
       });
     });
   },
+
   deleteProductById: async (productId, userId) => {
     return new Promise((resolve, reject) => {
       dbService.run('DELETE FROM products WHERE id = ? AND user = ?', [productId, userId])
@@ -78,6 +63,7 @@ module.exports = {
       .catch(error => reject(error));
     });
   },
+
   updateProductById: async (productId, productContent) => {
     return new Promise((resolve, reject) => {
       dbService.run(

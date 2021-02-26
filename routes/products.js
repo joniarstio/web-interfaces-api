@@ -26,17 +26,14 @@ router.get('',
 passportInstance.authenticate('jwt', { session: false }),
 async (req, res) => {
   try {
-    console.log('GET user products')
+    //console.log('GET user products')
     const p = await products.getProductsByUserId(req.user.id);
     res.json(p);
   } catch (error) {
     res.status(400).json({
       reason: error
     });
-  
-
   }
-
 })
 
 /*router.get(
@@ -149,7 +146,5 @@ router.put(
       res.status(404).send();
     }
 });
-
-
 
 module.exports = router;
