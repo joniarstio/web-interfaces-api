@@ -28,7 +28,7 @@
       "description": "Images of the product"
     },
     "price": {
-      "type": "number",
+      "type": "string",
       "description": "Price of the product"
     },
     "deliveryType": {

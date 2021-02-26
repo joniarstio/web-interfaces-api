@@ -56,7 +56,7 @@ async function createTables()
         "category" TEXT NOT NULL,
         "location" TEXT NOT NULL,
         "images" TEXT NOT NULL,
-        "price"	INTEGER NOT NULL,
+        "price"	TEXT NOT NULL,
         "deliveryType" TEXT NOT NULL,
         "sellerName"	TEXT NOT NULL,
         "sellerPhone"	TEXT NOT NULL,

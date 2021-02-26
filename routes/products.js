@@ -22,7 +22,24 @@ function validateNewOrEditedProductRequest(req, res, next)
   next();
 }
 
-router.get(
+router.get('', 
+passportInstance.authenticate('jwt', { session: false }),
+async (req, res) => {
+  try {
+    console.log('GET user products')
+    const p = await products.getProductsByUserId(req.user.id);
+    res.json(p);
+  } catch (error) {
+    res.status(400).json({
+      reason: error
+    });
+  
+
+  }
+
+})
+
+/*router.get(
   '',
   passportInstance.authenticate('jwt', { session: false }),
   async (req, res) => {
@@ -37,7 +54,7 @@ router.get(
         reason: error
       });
     }
-});
+});*/
 
 router.get(
   '/all',
@@ -132,5 +149,7 @@ router.put(
       res.status(404).send();
     }
 });
+
+
 
 module.exports = router;

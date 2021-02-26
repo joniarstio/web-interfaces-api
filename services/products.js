@@ -2,7 +2,7 @@ const uuidv4 = require('uuid/v4');
 const sqlite3 = require('sqlite3').verbose();
 const dbService = require('./db');
 
-function convertIsDoneFromIntegerToBoolean(arrayOfElements)
+/*function convertIsDoneFromIntegerToBoolean(arrayOfElements)
 {
   arrayOfElements = arrayOfElements.map(r => {
     if(r.isDone) {
@@ -12,9 +12,11 @@ function convertIsDoneFromIntegerToBoolean(arrayOfElements)
     }
     return r;
   });
-}
+}*/
 
 module.exports = {
+  getAllUserProducts: (userId) => products.filter(p => p.userId === userId),
+
   getAllProducts: async () => {
     return new Promise((resolve, reject) => {
       dbService.getDb().all('SELECT * FROM products', function(error, rows) {
@@ -28,10 +30,6 @@ module.exports = {
     return new Promise((resolve, reject) => {
       dbService.getDb().all('SELECT * FROM products WHERE user = ?', [userId], function(error, rows) {
         error !== null ? reject(error) : null;
-
-        // This datatype conversion is here because sqlite does not have boolean datatype, only integer
-        convertIsDoneFromIntegerToBoolean(rows);
-
         resolve(rows);
       })
     });
@@ -58,7 +56,7 @@ module.exports = {
 
         if(rows != undefined) {
           // This datatype conversion is here because sqlite does not have boolean datatype, only integer
-          convertIsDoneFromIntegerToBoolean([rows]);
+          //convertIsDoneFromIntegerToBoolean([rows]);
         }
 
 
