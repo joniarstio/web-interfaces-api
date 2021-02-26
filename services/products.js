@@ -4,7 +4,7 @@ const dbService = require('./db');
 
 
 module.exports = {
-  
+
   getAllProducts: async () => {
     return new Promise((resolve, reject) => {
       dbService.getDb().all('SELECT * FROM products', function(error, rows) {
@@ -29,7 +29,7 @@ module.exports = {
       dbService.run('INSERT INTO products (user, title, description, category, location, images, price, deliveryType, sellerName, sellerPhone, createdDateTime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                    [product.user, product.title, product.description, product.category, product.location, product.images, product.price, product.deliveryType, product.sellerName, product.sellerPhone, product.createdDateTime])
       .then(result => {
-        if(result.changes == 1) {
+        if(result.changes > 8) {
           resolve(true);
         }
         else {

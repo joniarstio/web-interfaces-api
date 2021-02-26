@@ -22,13 +22,13 @@ function validateNewOrEditedProductRequest(req, res, next)
   next();
 }
 
-router.get('', 
+router.get('',
 passportInstance.authenticate('jwt', { session: false }),
 async (req, res) => {
   try {
     //console.log('GET user products')
     const p = await products.getProductsByUserId(req.user.id);
-    res.json(p);
+    res.status(200).json(p);
   } catch (error) {
     res.status(400).json({
       reason: error
@@ -36,8 +36,7 @@ async (req, res) => {
   }
 })
 
-/*router.get(
-  '',
+/*router.get('',
   passportInstance.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
@@ -95,6 +94,8 @@ router.post(
   passportInstance.authenticate('jwt', { session: false }),
   validateNewOrEditedProductRequest,
   async (req, res) => {
+    console.log('POST /products');
+    console.log(req.body);
 
     try {
       const now = new Date('05 October 2011 14:48 UTC');
@@ -112,6 +113,7 @@ router.post(
         createdDateTime: now.toISOString(),
       });
       res.status(201).send();
+      res.json(products.getProductsByUserId(req.user.id));
     } catch (error) {
       res.status(400).json({
         reason: error
