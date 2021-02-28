@@ -52,7 +52,7 @@ async (req, res) => {
     }
 });*/
 
-router.get(
+/*router.get(
   '/all',
   async (req, res) => {
     try {
@@ -66,7 +66,20 @@ router.get(
         reason: error
       });
     }
-});
+});*/
+
+router.get('/all',
+async (req, res) => {
+  try {
+    //console.log('GET all products')
+    const p = await products.getAllProducts(req.body);
+    res.status(200).json(p);
+  } catch (error) {
+    res.status(400).json({
+      reason: error
+    });
+  }
+})
 
 router.get(
   '/:id',
