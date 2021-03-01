@@ -9,12 +9,14 @@ let server = null;
 
 const usersComponent = require('./routes/users');
 const productsComponent = require('./routes/products');
+const apiDoc = require('./reference/Web-interfaces-API.v1')
 
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/users', usersComponent);
 app.use('/products', productsComponent);
+app.use('/apiDoc', apiDoc);
 
 // This is an error handling middleware, the function has four parameters.
 // See https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
