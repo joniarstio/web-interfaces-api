@@ -1,3 +1,6 @@
+
+let apiDoc = [
+
 {
   "openapi": "3.0.0",
   "info": {
@@ -10,7 +13,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://web-interface-api.herokuapp.com/"
     }
   ],
   "paths": {
@@ -688,4 +691,9 @@
       }
     }
   }
+}]
+
+exports.getApiDoc = function() 
+{
+    return apiDoc;
 }
